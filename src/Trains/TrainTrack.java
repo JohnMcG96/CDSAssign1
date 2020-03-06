@@ -76,7 +76,7 @@ public class TrainTrack {
         // record the train activity
         bCountSem.P();  // limit  number of trains on track to avoid deadlock
         Idle(100);
-        slotSem[14].P();// wait for slot 16 to be free
+        slotSem[14].P();// wait for slot 14 to be free
         slots[14] = "[" + trainName + "]"; // move train type B on to slot sixteen  
         theTrainActivity.addMovedTo(14); // record the train activity
     }// end trainB_movedOnToTrack
@@ -85,7 +85,7 @@ public class TrainTrack {
         Idle(100);
         // record the train activity
         slots[5] = "[..]"; // move train type A off slot zero  
-        slotSem[5].V();// signal slot 0 to be free
+        slotSem[5].V();// signal slot 5 to be free
         Idle(100);
         aCountSem.V(); // signal space for another A train
         theTrainActivity.addMovedOff(trainName);
@@ -114,7 +114,7 @@ public class TrainTrack {
             currentPosition++;
         } while (currentPosition < 8);
         Idle(100);
-    } // end trainB_MoveAroundToSharedTrackPart1
+    } // end trainA_MoveAroundToSharedTrackPart1
     
     public void trainA_MoveAlongSharedTrackPart1(String trainName) {
         // wait for the necessary conditions to get access to shared track
@@ -171,7 +171,7 @@ public class TrainTrack {
             currentPosition++;
         } while (currentPosition < 17);
         Idle(100);
-    } // end trainA_MoveAroundToSharedTrackPart1
+    } // end trainA_MoveAroundToSharedTrackPart2
     
     public void trainA_MoveAlongSharedTrackPart2(String trainName) {
         // wait for the necessary conditions to get access to shared track
@@ -213,7 +213,7 @@ public class TrainTrack {
         }
         aMutexSem.V(); // release mutually exclusive access to global variable aUsingSharedTrack
         Idle(100);
-    }// end   trainA_MoveAlongSharedTrackPart1
+    }// end   trainA_MoveAlongSharedTrackPart2
     
     public void trainA_MoveAroundToSharedTrackPart3(String trainName) {
         Idle(100);
@@ -301,7 +301,7 @@ public class TrainTrack {
             currentPosition++;
         } while (currentPosition < 8);
         Idle(100);
-    } // end trainB_MoveAroundToSharedTrackPart1
+    } // end trainB_MoveAroundToSharedTrackPart2
     
     public void trainB_MoveAlongSharedTrackPart2(String trainName) {
         // wait for the necessary conditions to get access to shared track
@@ -343,7 +343,7 @@ public class TrainTrack {
         }
         bMutexSem.V(); // release mutually exclusive access to global variable bUsingSharedTrack
         Idle(100);
-    }// end   trainA_MoveAlongSharedTrackPart1
+    }// end   trainA_MoveAlongSharedTrackPart2
     
     public void trainB_MoveAroundToSharedTrackPart3(String trainName) {
         Idle(100);

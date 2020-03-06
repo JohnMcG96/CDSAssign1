@@ -69,4 +69,4 @@ public class Trains {
         System.out.println("All trains have successfully travelled 1 circuits of their track loop ");
     } // end main     
 
-} // end TrainsOnTrack class
+} // end Trains class
